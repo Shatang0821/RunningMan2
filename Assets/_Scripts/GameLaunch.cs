@@ -1,3 +1,4 @@
+using FrameWork.Factories;
 using FrameWork.Resource;
 using FrameWork.UI;
 using FrameWork.Utils;
@@ -10,24 +11,14 @@ public class GameLaunch : UnitySingleton<GameLaunch>
         this.InitFramework();
         this.InitGameLogic();
     }
-
-    /// <summary>
-    /// アップデートチェック
-    /// </summary>
-    private void CheckHotUpdate()
-    {
-        //データ取得
-        //ダウンロード情報
-        //ローカルにダウンロード
-    }
     
     /// <summary>
     /// フレームワークを初期化
     /// </summary>
     private void InitFramework()
     {
-        this.gameObject.AddComponent<ResManager>();
-        this.gameObject.AddComponent<UIManager>();
+        ManagerFactory.Instance.CreateManager<ResManager>();
+        ManagerFactory.Instance.CreateManager<UIManager>();
     }
 
     /// <summary>

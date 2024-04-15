@@ -5,17 +5,16 @@ namespace FrameWork.Resource
 {
     public class ResManager : UnitySingleton<ResManager>
     {
-        protected override void Awake()
+        /// <summary>
+        /// リソースからオブジェクトを取得する
+        /// </summary>
+        /// <param name="path">パス</param>
+        /// <typeparam name="T">型</typeparam>
+        /// <returns></returns>
+        public T GetAssetCache<T>(string path) where T : Object
         {
-            base.Awake();
-        }
-
-        public T GetAssetCache<T>(string path) where T : UnityEngine.Object
-        {
-            // string path = "Assets/AssetsPackage/" + name;
-            // UnityEngine.Object target = UnityEditor.AssetDatabase.LoadAssetAtPath<T>(path);
-            // return target as T;
-            UnityEngine.Object target = Resources.Load<T>(path);
+            //string path = "Assets/Resources/" + name;
+            Object target = Resources.Load<T>(path);
             return (T)target;
         }
     }
