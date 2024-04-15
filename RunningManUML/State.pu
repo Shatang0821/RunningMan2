@@ -1,0 +1,23 @@
+@startuml
+[*] --> Standing
+Standing --> Running : Run
+Running --> Standing : Stop
+Standing --> Jumping : Jump
+Jumping --> Standing : Land
+Running --> Jumping : Jump
+Jumping --> Running : Land + Run
+
+state Running {
+  state RunForward
+  state RunBackward
+  RunForward --> RunBackward : Turn
+  RunBackward --> RunForward : Turn
+}
+
+state Jumping {
+  state JumpUp
+  state FallDown
+  JumpUp --> FallDown
+}
+
+@enduml
