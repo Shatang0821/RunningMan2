@@ -10,10 +10,23 @@ public class PlayerInput
 
     private InputActions _inputActions;
     private InputDevice _currentDevice; //現在デバイス
+
     public Vector2 Axis => ProcessInput(_inputActions.GamePlay.Axis.ReadValue<Vector2>());
 
+    //ジャンプキーが押されたとき
+    public bool Jump => _inputActions.GamePlay.Jump.WasPerformedThisFrame();
+
+    //ジャンプが離れたとき
+    public bool StopJump => _inputActions.GamePlay.Jump.WasReleasedThisFrame();
+
+    //ダッシュキーが押されたとき
+    public bool Dash => _inputActions.GamePlay.Dash.WasPerformedThisFrame();
+
+    //登るキーが押し続けている間
+    public bool Climb => _inputActions.GamePlay.Climb.IsPressed();
+
     #endregion
-    
+
     #region クラスライフサイクル
 
     /// <summary>
