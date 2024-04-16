@@ -6,7 +6,7 @@ public class UICreator : EditorWindow
 {
     private static string _filePath = "/_Scripts/Game/UIControllers/";
     
-    [MenuItem("MyTool/UICreator")]
+    [MenuItem("MyTools/UICreator")]
     public static void CreateUI()
     {
         UICreator win = EditorWindow.GetWindow<UICreator>();
