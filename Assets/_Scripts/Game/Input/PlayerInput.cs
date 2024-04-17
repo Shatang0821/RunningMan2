@@ -32,19 +32,19 @@ public class PlayerInput
     /// <summary>
     /// 初期化処理
     /// </summary>
-    private void Init()
+    public void Init()
     {
         _inputActions = new InputActions();
         _currentDevice = Keyboard.current;
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
         _inputActions.Enable();
         InputSystem.onActionChange += OnActionChange;
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         _inputActions.Disable();
         InputSystem.onActionChange -= OnActionChange;
