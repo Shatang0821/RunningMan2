@@ -29,6 +29,11 @@ public class PlayerInput
 
     #region クラスライフサイクル
 
+    public PlayerInput()
+    {
+        Init();
+    }
+    
     /// <summary>
     /// 初期化処理
     /// </summary>
