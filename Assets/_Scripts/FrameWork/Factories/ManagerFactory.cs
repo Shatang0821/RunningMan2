@@ -21,9 +21,9 @@ namespace FrameWork.Factories
             }
 
             var component = gameObject.AddComponent<T>();
-            if (component is IInitializable initable)
+            if (component is IInitializable initializable)
             {
-                initable.Init();
+                initializable.Init();
             }
 
             return component;

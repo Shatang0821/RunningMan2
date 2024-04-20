@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace FrameWork.Resource
 {
-    public class ResManager : UnitySingleton<ResManager>
+    public class ResManager : Singleton<ResManager>
     {
         /// <summary>
         /// リソースからオブジェクトを取得する

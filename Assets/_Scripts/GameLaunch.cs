@@ -1,5 +1,6 @@
 using System;
 using FrameWork.Factories;
+using FrameWork.Pool;
 using FrameWork.Resource;
 using FrameWork.UI;
 using FrameWork.Utils;
@@ -12,7 +13,7 @@ public class GameLaunch : UnitySingleton<GameLaunch>
     {
         base.Awake();
         this.InitFramework();
-        this.InitGameLogic();
+        this.InitManagers();
 
     }
 
@@ -21,17 +22,16 @@ public class GameLaunch : UnitySingleton<GameLaunch>
     /// </summary>
     private void InitFramework()
     {
-        ManagerFactory.Instance.CreateManager<ResManager>();
         ManagerFactory.Instance.CreateManager<UIManager>();
     }
 
     /// <summary>
     /// ゲームロジックに入る
     /// </summary>
-    private void InitGameLogic()
+    private void InitManagers()
     {
-        this.gameObject.AddComponent<GameApp>();
-        GameApp.Instance.InitGame();
+        ManagerFactory.Instance.CreateManager<PoolManager>();
+        ManagerFactory.Instance.CreateManager<GameManager>();
     }
     
 }
