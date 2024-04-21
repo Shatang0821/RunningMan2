@@ -18,7 +18,6 @@ public class PlayerRunState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        currentFrame = 0;
     }
 
     public override void Exit()

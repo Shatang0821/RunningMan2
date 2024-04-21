@@ -15,6 +15,7 @@ public class PlayerGroundedState : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        player.FlipController(player.XInput);
     }
 
     public override void PhysicsUpdate()

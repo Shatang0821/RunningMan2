@@ -12,14 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform _wallCheck; //壁チェック
     [SerializeField] private float _wallCheckDistance; //チェック距離
     [SerializeField] private LayerMask _whatIsGround; //レイヤー設定
-
-    /// <summary>
-    /// 向いている方向
-    /// </summary>
-    public int FacingDir { get; private set; } = 1;
-
-    private bool _facingRight = true;
-
+    [SerializeField] private GameObject _sprite;
+    
     public Physics Physics;
     private PlayerInput _playerInput;
     private PlayerStateMachine _playerStateMachine;
@@ -28,6 +22,13 @@ public class Player : MonoBehaviour
     public float YInput => _playerInput.Axis.y;
     public bool IsJump => _playerInput.Jump;
     public bool IsStopJump => _playerInput.StopJump;
+    
+    /// <summary>
+    /// 向いている方向
+    /// </summary>
+    public int FacingDir { get; private set; } = 1;
+
+    private bool _facingRight = true;
     
     #region LifeMethod
 
@@ -74,9 +75,9 @@ public class Player : MonoBehaviour
         Physics.Velocity.y = y;
     }
     
-    public void SetUseGravity(float value)
+    public void SetVelocity(Vector3 currentVelocity)
     {
-        //Physics.Gravity = value;
+        Physics.Velocity = currentVelocity;
     }
 
     #region 判定
@@ -100,9 +101,33 @@ public class Player : MonoBehaviour
     }
 
     #endregion
-
-    public void SetVelocity(Vector3 currentVelocity)
+    
+    #region Flip
+    /// <summary>
+    /// プレイヤー反転関数
+    /// </summary>
+    public void Flip()
     {
-        Physics.Velocity = currentVelocity;
+        FacingDir = FacingDir * -1;
+        _facingRight = !_facingRight;
+        //y軸中心に180回転
+        _sprite.transform.Rotate(0, 180, 0);
     }
+
+    /// <summary>
+    /// 反転判断する関数
+    /// </summary>
+    /// <param name="_x"></param>
+    public void FlipController(float _x)
+    {
+        if (_x > 0 && !_facingRight)
+            Flip();
+        else if (_x < 0 && _facingRight)
+            Flip();
+    }
+    #endregion
+    
+    
+
+    
 }

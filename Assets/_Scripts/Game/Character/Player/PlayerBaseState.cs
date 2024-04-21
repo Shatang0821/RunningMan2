@@ -19,6 +19,7 @@ public class PlayerBaseState : IState
     public virtual void Enter()
     {
         Debug.Log(this.GetType().ToString());
+        currentFrame = 0;
     }
 
     public virtual void Exit()
@@ -34,6 +35,7 @@ public class PlayerBaseState : IState
     public virtual void PhysicsUpdate()
     {
         currentFrame++;
+        //Debug.Log(currentFrame);
     }
     
     /// <summary>

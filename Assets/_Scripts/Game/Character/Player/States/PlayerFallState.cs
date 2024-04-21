@@ -1,29 +1,38 @@
-﻿namespace _Scripts.Game.Character.Player.States
+﻿using UnityEngine;
+
+
+public class PlayerFallState : PlayerBaseState
 {
-    public class PlayerFallState : PlayerBaseState
+    public PlayerFallState(string animBoolName, global::Player player, PlayerStateMachine playerStateMachine) :
+        base(animBoolName, player, playerStateMachine)
     {
-        public PlayerFallState(string animBoolName, global::Player player, PlayerStateMachine playerStateMachine) : base(animBoolName, player, playerStateMachine)
-        {
-        }
+    }
 
-        public override void Enter()
-        {
-            base.Enter();
-        }
+    private int _accelerationFrames = 12;
+    private Vector3 _minVelocity => new Vector3(player.Physics.Velocity.x, -20, 0);
 
-        public override void LogicUpdate()
-        {
-            base.LogicUpdate();
-        }
+    public override void Enter()
+    {
+        base.Enter();
+    }
 
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        if (player.IsGroundDetected())
+            playerStateMachine.ChangeState(PlayerStateEnum.Idle);
+    }
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+
+        ChangeVelocity(_minVelocity, _accelerationFrames);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        player.SetVelocityY(0);
     }
 }
