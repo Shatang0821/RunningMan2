@@ -103,7 +103,7 @@ public class MapEditor : EditorWindow
     private void LoadAndInstantiateTiles(Transform tilesParent)
     {
         //csvを読み取る
-        TextAsset data = Resources.Load<TextAsset>("MapTextDatas/" + _mapDataFileName);
+        TextAsset data = Resources.Load<TextAsset>("Map/MapTextData/" + _mapDataFileName);
         if (data == null)
         {
             Debug.LogWarning("text data is null");
@@ -112,7 +112,7 @@ public class MapEditor : EditorWindow
         string[] lines = data.text.Split('\n');
         
         //スプライトロード
-        string basePath = "Map/Terrain (16x16)"; // ベースパス
+        string basePath = "Map/DrawMap/Terrain (16x16)"; // ベースパス
         Sprite[] sprites = Resources.LoadAll<Sprite>(basePath);
         
         if (sprites.Length > 0)
@@ -123,6 +123,7 @@ public class MapEditor : EditorWindow
                 for (int x = 0; x < cells.Length; x++)
                 {
                     string tileName = cells[x].Trim();
+                    Debug.Log(x + "," + y + tileName);
                     if (tileName != "Empty")
                     {
                         //指定スプライトを探す

@@ -16,6 +16,7 @@ public class GameManager : PersistentUnitySingleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        ManagerFactory.Instance.CreateManager<MapManager>();
         stateMachine = new GameStateMachine();
         GamePlay();
     }
