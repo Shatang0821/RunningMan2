@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using FrameWork.Utils;
 using UnityEngine;
 
@@ -16,6 +17,11 @@ namespace FrameWork.Resource
             //string path = "Assets/Resources/" + name;
             Object target = Resources.Load<T>(path);
             return (T)target;
+        }
+        
+        public ResourceRequest GetAssetCacheAsync<T>(string path) where T : Object
+        {
+            return Resources.LoadAsync<T>(path);
         }
     }
 }
