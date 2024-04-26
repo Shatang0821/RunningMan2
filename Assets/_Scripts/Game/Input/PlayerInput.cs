@@ -149,8 +149,6 @@ public class PlayerInput
             case 7: return new Vector2(1, -1); // Southeast
             default:
                 return Vector2.zero;
-                //throw new InvalidOperationException("Unexpected angle calculation.");
-                break;
         }
     }
 

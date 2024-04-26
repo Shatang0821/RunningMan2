@@ -6,8 +6,7 @@ namespace FrameWork.FSM
 {
     public abstract class StateMachine<TStateEnum>
     {
-        protected IState currentState { get; private set; }     //現在状態クラス
-        public TStateEnum CurrentState { get; private set; }    //現在状態列挙型
+        public IState CurrentState { get; private set; }     //現在状態クラス
         
         private Dictionary<TStateEnum, IState> _stateTable = new();
         
@@ -23,23 +22,25 @@ namespace FrameWork.FSM
         {
             if (_stateTable.TryGetValue(newState, out IState state))
             {
-                currentState?.Exit();
-                CurrentState = newState;
-                currentState = state;
+                if (CurrentState != state)
+                {
+                    CurrentState?.Exit();
+                    CurrentState = state;
 
-                currentState.Enter();
+                    CurrentState.Enter();
+                }
             }
             
         }
 
         public void LogicUpdate()
         {
-            currentState?.LogicUpdate();
+            CurrentState?.LogicUpdate();
         }
 
         public void PhysicsUpdate()
         {
-            currentState?.PhysicsUpdate();
+            CurrentState?.PhysicsUpdate();
         }
 
         protected void RegisterState(TStateEnum stateEnum, IState state)

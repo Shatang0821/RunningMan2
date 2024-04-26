@@ -1,8 +1,10 @@
 ﻿using FrameWork.Utils;
+using UnityEngine;
 
 
 public class PlayerIdleState : PlayerGroundedState
 {
+    private int _decelerationFrames = 3;
     public PlayerIdleState(string animBoolName, Player player, PlayerStateMachine playerStateMachine) : base(
         animBoolName, player, playerStateMachine)
     {
@@ -21,14 +23,29 @@ public class PlayerIdleState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(player.XInput != 0)
+        if(playerStateMachine.CurrentState != this)
+            return;
+        
+        if (player.XInput != 0 && player.IsGroundDetected())
+        {
             playerStateMachine.ChangeState(PlayerStateEnum.Run);
-        if(player.IsJump)
-            playerStateMachine.ChangeState(PlayerStateEnum.Jump);
+            return; 
+        }
+
+        if (!player.IsGroundDetected())
+        {
+            playerStateMachine.ChangeState(PlayerStateEnum.Fall);
+            return;
+        }
+        
+        //...
+            
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        // 減速処理。現在のフレームと減速に要するフレーム数を基に速度を調整
+        ChangeVelocity(Vector2.zero, _decelerationFrames);
     }
 }
