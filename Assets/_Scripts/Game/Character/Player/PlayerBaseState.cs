@@ -46,6 +46,9 @@ public class PlayerBaseState : IState
         /*
          * 遷移条件は優先度高い順に書く
          */
+        // ダッシュ入力のチェック
+        if (CheckForDashInput())
+            return;
         stateTimer -= Time.deltaTime;             // 状態タイマーの更新
     }
 
@@ -73,5 +76,18 @@ public class PlayerBaseState : IState
         {
             player.SetVelocity(targetVelocity);
         }
+    }
+    
+    bool CheckForDashInput()
+    {
+        if (!player.CanDash)
+            return false;
+
+        if (player.DashInput)
+        {
+            playerStateMachine.ChangeState(PlayerStateEnum.Dash);
+            return true;
+        }
+        return false;
     }
 }

@@ -13,7 +13,7 @@
         base.Enter();
         player.SetGravity(3);
         player.SetVelocityY(_initialVelocityY);
-        //stateTimer = _totalJumpTime;
+        player.ParticleData.JumpParticle.Play();
     }
 
     public override void LogicUpdate()

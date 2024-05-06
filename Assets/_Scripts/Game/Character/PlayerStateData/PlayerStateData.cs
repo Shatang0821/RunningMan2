@@ -5,5 +5,5 @@
     public float Gravity = 0;            // 重力
     public bool HasJumpBuffer = false;
     public float JumpInputBufferTime = 0.1f;
-    
+    public bool CanDash = true;
 }

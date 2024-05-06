@@ -8,12 +8,22 @@ using UnityEngine;
 [Serializable]
 public class Player : Entity
 {
+    
     private PlayerInput _playerInput;
     private PlayerStateMachine _playerStateMachine;
-    
+
     private WaitForSeconds _waitJumpInputBufferTime;
-    [HideInInspector]
-    public Rigidbody2D Rigidbody2D;
+    [HideInInspector] public Rigidbody2D Rigidbody2D;
+    
+    [Header("Player info")]
+    public PlayerStateData StateData;
+    public PlayerParticleData ParticleData;
+    [SerializeField]
+    private GameObject _dashMask;
+    private SpriteRenderer _dashMaskSprite;
+    #region INPUT
+
+    public Vector2 InputVector => _playerInput.Axis;
     public float XInput => _playerInput.Axis.x;
     public float YInput => _playerInput.Axis.y;
     public bool JumpInput => _playerInput.Jump;
@@ -21,7 +31,20 @@ public class Player : Entity
 
     public bool ClimbInput => _playerInput.Climb;
 
-    public PlayerStateData StateData;
+    public bool DashInput => _playerInput.Dash;
+
+    public bool CanDash
+    {
+        get => StateData.CanDash;
+        set
+        {
+            StateData.CanDash = value;
+            SetDashMaskAlpha(value);
+        }
+    }
+
+    #endregion
+
     #region LifeMethod
 
     protected override void Awake()
@@ -31,9 +54,15 @@ public class Player : Entity
         StateData = new PlayerStateData();
         _waitJumpInputBufferTime = new WaitForSeconds(StateData.JumpInputBufferTime);
         _playerStateMachine = new PlayerStateMachine(this);
-        
+
         _playerStateMachine.ChangeState(PlayerStateEnum.Idle);
         Rigidbody2D = GetComponent<Rigidbody2D>();
+        if (_dashMask != null)
+        {
+            _dashMaskSprite = _dashMask.GetComponent<SpriteRenderer>();
+            Debug.Log("Done");
+        }
+        
     }
 
     private void OnEnable()
@@ -60,7 +89,7 @@ public class Player : Entity
     #endregion
 
     #region JUMP
-    
+
     // ジャンプ入力バッファの設定
     public void SetJumpInputBufferTimer()
     {
@@ -70,12 +99,33 @@ public class Player : Entity
 
     private IEnumerator JumpInputBufferCoroutine()
     {
-        
         StateData.HasJumpBuffer = true;
         Debug.Log(StateData.HasJumpBuffer);
         yield return _waitJumpInputBufferTime;
         StateData.HasJumpBuffer = false;
         Debug.Log(StateData.HasJumpBuffer);
+    }
+
+    #endregion
+
+    #region DASH
+
+    private void SetDashMaskAlpha(bool canDash)
+    {
+        if(_dashMaskSprite == null) return;
+        
+        Color color = _dashMaskSprite.color;
+        if (canDash)
+        {
+            color.a = 0f;
+            _dashMaskSprite.color = color;
+        }
+        else
+        {
+            color.a = 1f;
+            _dashMaskSprite.color = color;
+        }
+        
     }
 
     #endregion

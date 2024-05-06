@@ -8,6 +8,7 @@
     {
         base.Enter();
         player.SetGravity(0.2f);
+        player.ParticleData.TouchParticle.Play();
     }
 
     public override void LogicUpdate()
@@ -32,10 +33,15 @@
             return;
         }
 
-        // if (player.JumpInput && player.IsWallDetected())
-        // {
-        //     player.Flip();
-        // }
+        // 壁に接触していて、ジャンプ入力がある場合、壁ジャンプ状態に切り替える
+        if (player.JumpInput && player.IsWallDetected())
+        {
+            //反対側にジャンプするため向きを変更
+            player.Flip();
+            playerStateMachine.ChangeState(PlayerStateEnum.WallJump);
+            return;
+        }
+        
         if (player.ClimbInput)
         {
             playerStateMachine.ChangeState(PlayerStateEnum.Climb);

@@ -16,6 +16,7 @@ public class PlayerWallJumpState : PlayerAirState
         player.SetGravity(4);
         player.SetVelocity(jumpVelocity);
         stateTimer = _totalJumpTime;
+        player.ParticleData.JumpParticle.Play();
     }
 
     public override void LogicUpdate()

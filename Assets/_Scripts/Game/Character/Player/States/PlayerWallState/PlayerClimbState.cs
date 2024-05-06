@@ -21,7 +21,12 @@ public class PlayerClimbState : PlayerWallState
     public PlayerClimbState(string animBoolName, Player player, PlayerStateMachine playerStateMachine) : base(animBoolName, player, playerStateMachine)
     {
     }
-    
+
+    public override void Enter()
+    {
+        base.Enter();
+        player.ParticleData.TouchParticle.Play();
+    }
 
     public override void LogicUpdate()
     {

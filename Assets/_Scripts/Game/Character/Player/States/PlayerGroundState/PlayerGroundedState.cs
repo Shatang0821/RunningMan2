@@ -11,6 +11,10 @@ public class PlayerGroundedState : PlayerBaseState
     {
         base.Enter();
         player.SetGravity(0);
+        if (!player.CanDash)
+        {
+            player.CanDash = true;
+        }
     }
 
     public override void LogicUpdate()
@@ -28,6 +32,12 @@ public class PlayerGroundedState : PlayerBaseState
         if (!player.IsGroundDetected())
         {
             playerStateMachine.ChangeState(PlayerStateEnum.CoyoteTime);
+            return;
+        }
+
+        if (player.IsWallDetected() && player.ClimbInput)
+        {
+            playerStateMachine.ChangeState(PlayerStateEnum.Climb);
             return;
         }
     }

@@ -10,13 +10,15 @@ public enum PlayerStateEnum
    Climb,
    ClimbLeap,
    WallSlide,
-   WallJump
+   WallJump,
+   Dash
 }
 
 public class PlayerStateMachine : StateMachine<PlayerStateEnum>
 {
    public PlayerStateMachine(Player player)
    {
+      RegisterState(PlayerStateEnum.Dash,new PlayerDashState("Run",player,this));
       //GroundState
       RegisterState(PlayerStateEnum.Idle,new PlayerIdleState(PlayerStateEnum.Idle.ToString(),player,this));
       RegisterState(PlayerStateEnum.Run,new PlayerRunState(PlayerStateEnum.Run.ToString(),player,this));
