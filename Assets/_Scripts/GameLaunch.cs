@@ -12,6 +12,10 @@ public class GameLaunch : UnitySingleton<GameLaunch>
     protected override void Awake()
     {
         base.Awake();
+        // Vsync Count を 0にすることにより、FPS を固定できるようになる
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+        
         this.InitFramework();
         this.InitManagers();
 

@@ -26,7 +26,8 @@ public class PlayerRunState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(playerStateMachine.CurrentState != this)
+        // 現在の状態がこの状態でなければ、さらなるロジックを実行しない
+        if(!playerStateMachine.CheckCurrentState(this))
             return;
         
         if (player.XInput == 0)

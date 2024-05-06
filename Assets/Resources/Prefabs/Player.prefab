@@ -212,7 +212,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0.28235292, b: 0.28235292, a: 1}
+  m_Color: {r: 1, g: 0.28235292, b: 0.28235292, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -276,7 +276,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b10f128dfad8a0042b74f8cb32eec684, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1429759935652420237}
-  groundCheckDistance: 0.18
+  groundCheckDistance: 0.1
   wallCheck: {fileID: 5912330358720104540}
   wallCheckDistance: 0.09
   whatIsGround:
@@ -343,7 +343,6 @@ MonoBehaviour:
     m_Bits: 8
   DeathVFX: {fileID: 0}
   Rigidbody2D: {fileID: 4714858683712972841}
-  StateData: {fileID: 0}
 --- !u!1 &7926411463840503482
 GameObject:
   m_ObjectHideFlags: 0

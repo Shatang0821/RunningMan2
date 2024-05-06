@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FrameWork.Utils;
+using UnityEditor;
 using UnityEngine;
 
 namespace FrameWork.FSM
@@ -22,7 +23,7 @@ namespace FrameWork.FSM
         {
             if (_stateTable.TryGetValue(newState, out IState state))
             {
-                if (CurrentState != state)
+                if (!CheckCurrentState(state))
                 {
                     CurrentState?.Exit();
                     CurrentState = state;
@@ -46,6 +47,16 @@ namespace FrameWork.FSM
         protected void RegisterState(TStateEnum stateEnum, IState state)
         {
             _stateTable[stateEnum] = state;
+        }
+
+        /// <summary>
+        /// 現在状態との一致チェック
+        /// </summary>
+        /// <param name="state">チェック状態</param>
+        /// <returns></returns>
+        public bool CheckCurrentState(IState state)
+        {
+            return CurrentState == state;
         }
     }
 }

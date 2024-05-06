@@ -61,7 +61,9 @@ public class PlayerBaseState : IState
     /// <param name="totalFrames">最高速度に達するまでのフレーム数</param>
     protected void ChangeVelocity(Vector3 targetVelocity, int totalFrames)
     {
-        if (currentFrame < totalFrames)
+        // 現在の速度と目標速度の差を計算
+        var velocityDifference = targetVelocity - (Vector3)player.Rigidbody2D.velocity;
+        if (currentFrame < totalFrames && velocityDifference.magnitude < 0.01f)
         {
             float lerpFactor = (float)currentFrame / totalFrames;
             Vector3 currentVelocity = Vector3.Lerp(player.Rigidbody2D.velocity, targetVelocity, lerpFactor);

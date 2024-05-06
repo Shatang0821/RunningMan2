@@ -10,7 +10,7 @@ public class PlayerGroundedState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
-        player.SetGravity(1);
+        player.SetGravity(0);
     }
 
     public override void LogicUpdate()
@@ -19,7 +19,7 @@ public class PlayerGroundedState : PlayerBaseState
         player.FlipController(player.XInput);
         
         // ジャンプ入力がある場合、ジャンプ状態に切り替える
-        if (player.IsJump)
+        if (player.JumpInput && player.IsGroundDetected())
         {
             playerStateMachine.ChangeState(PlayerStateEnum.Jump);
             return;

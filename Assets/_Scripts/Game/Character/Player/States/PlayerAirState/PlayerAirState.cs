@@ -9,8 +9,17 @@ public class PlayerAirState : PlayerBaseState
         animBoolName, player, playerStateMachine)
     {
     }
-    
-    
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        player.FlipController(player.XInput);
+        player.anim.SetFloat("yVelocity", player.Rigidbody2D.velocity.y);
+        // ジャンプ入力がある場合、ジャンプバッファタイマーを設定
+        if (player.JumpInput && !player.IsWallDetected())
+            player.SetJumpInputBufferTimer();
+    }
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();

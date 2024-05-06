@@ -21,9 +21,22 @@ public class PlayerJumpState : PlayerAirState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        // 現在の状態がこの状態でなければ、さらなるロジックを実行しない
+        if(!playerStateMachine.CheckCurrentState(this))
+            return;
+        
         if (player.Rigidbody2D.velocity.y <= 0)
         {
             playerStateMachine.ChangeState(PlayerStateEnum.Fall);
+            return;
+        }
+        
+        // 壁に接触していて、ジャンプ入力がある場合、壁ジャンプ状態に切り替える
+        if ((player.StateData.HasJumpBuffer || player.JumpInput) && player.IsWallDetected() && stateTimer <0)
+        {
+            //向きを反転してから
+            player.Flip();
+            playerStateMachine.ChangeState(PlayerStateEnum.WallJump);
             return;
         }
     }

@@ -16,7 +16,6 @@
         public override void Enter()
         {
             base.Enter();
-            player.SetGravity(0);
             stateTimer = _coyoteTime;
         }
 
@@ -29,7 +28,7 @@
         {
             base.LogicUpdate();
             // 現在の状態がこの状態でなければ、さらなるロジックを実行しない
-            if(playerStateMachine.CurrentState != this)
+            if(!playerStateMachine.CheckCurrentState(this))
                 return;
             
             // 地面が検出されているかチェック
@@ -49,7 +48,7 @@
             {
                 // coyoteTime中で地面にいない場合でもジャンプが許可される
                 // ここでジャンプ入力を確認するロジックがあれば良い
-                if (player.IsJump)
+                if (player.JumpInput)
                 {
                     playerStateMachine.ChangeState(PlayerStateEnum.Jump);
                 }
