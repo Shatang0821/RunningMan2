@@ -13,7 +13,12 @@ public class PlayerAirState : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        // 現在の状態がこの状態でなければ、さらなるロジックを実行しない
+        if (!playerStateMachine.CheckCurrentState(this))
+            return;
+        
         player.FlipController(player.XInput);
+        
         player.anim.SetFloat("yVelocity", player.Rigidbody2D.velocity.y);
         // ジャンプ入力がある場合、ジャンプバッファタイマーを設定
         if (player.JumpInput && !player.IsWallDetected())

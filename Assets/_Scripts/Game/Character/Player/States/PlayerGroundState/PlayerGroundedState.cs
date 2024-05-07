@@ -20,6 +20,9 @@ public class PlayerGroundedState : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        // 現在の状態がこの状態でなければ、さらなるロジックを実行しない
+        if (!playerStateMachine.CheckCurrentState(this))
+            return;
         player.FlipController(player.XInput);
         
         // ジャンプ入力がある場合、ジャンプ状態に切り替える

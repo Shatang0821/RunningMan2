@@ -17,6 +17,9 @@ public class PlayerWallState : PlayerBaseState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        // 現在の状態がこの状態でなければ、さらなるロジックを実行しない
+        if (!playerStateMachine.CheckCurrentState(this))
+            return;
     }
 
     public override void PhysicsUpdate()
@@ -28,7 +31,7 @@ public class PlayerWallState : PlayerBaseState
     {
         base.Exit();
         //速度をリセット
-        player.SetVelocityY(0);
+        player.SetVelocity(Vector2.zero);
     }
     
 

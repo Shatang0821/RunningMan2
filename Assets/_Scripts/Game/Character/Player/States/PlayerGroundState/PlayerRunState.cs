@@ -29,6 +29,9 @@ public class PlayerRunState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        // 現在の状態がこの状態でなければ、さらなるロジックを実行しない
+        if (!playerStateMachine.CheckCurrentState(this))
+            return;
         // 移動パーティクルエフェクトのタイマーを更新
         _counter += Time.deltaTime;
         
