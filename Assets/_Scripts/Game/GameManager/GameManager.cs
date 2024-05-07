@@ -17,6 +17,10 @@ public class GameManager : PersistentUnitySingleton<GameManager>
     {
         base.Awake();
         stateMachine = new GameStateMachine();
+    }
+    
+    private void Start()
+    {
         GamePlay();
     }
 

@@ -1,15 +1,19 @@
-﻿using FrameWork.EventCenter;
-using FrameWork.Factories;
-using FrameWork.FSM;
-using FrameWork.Utils;
-using UnityEngine;
+﻿using FrameWork.FSM;
 
 public class GameplayState : IState
 {
-    private PlayerController _playerController = new PlayerController();
+    private PlayerController _playerController;
+    private StageManager _stageManager;
+
+    public GameplayState()
+    {
+        _playerController = new PlayerController();
+        _stageManager = new StageManager();
+    }
 
     public void Enter()
     {
+        
         _playerController.GamePlayerEnter();
     }
 
@@ -20,11 +24,9 @@ public class GameplayState : IState
 
     public void LogicUpdate()
     {
-        
     }
 
     public void PhysicsUpdate()
     {
-        
     }
 }

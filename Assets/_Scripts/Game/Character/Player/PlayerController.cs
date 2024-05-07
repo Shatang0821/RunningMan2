@@ -10,7 +10,7 @@ public class PlayerController
     private const string PrefabPath = "Prefabs/Player";
     
     //モデル
-    [SerializeField]private GameObject _player;
+    private GameObject _player;
 
     public PlayerController()
     {
@@ -26,5 +26,7 @@ public class PlayerController
     {
         _player.SetActive(false);
     }
+    
+    
     
 }

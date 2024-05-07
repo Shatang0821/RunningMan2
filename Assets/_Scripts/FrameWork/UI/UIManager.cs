@@ -27,7 +27,7 @@ namespace FrameWork.UI
         {
             base.Awake();
             //Canvasを検索して
-            this.Canvas = GameObject.Find("MainCanvas");
+            this.Canvas = GameObject.Find("Main Canvas");
             //存在しない場合はエラー表示
             if (this.Canvas == null)
             {

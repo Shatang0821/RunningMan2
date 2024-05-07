@@ -60,7 +60,6 @@ public class Player : Entity
         if (_dashMask != null)
         {
             _dashMaskSprite = _dashMask.GetComponent<SpriteRenderer>();
-            Debug.Log("Done");
         }
         
     }

@@ -3,6 +3,10 @@ using FrameWork.Utils;
 
 public class GameOverState : IState
 {
+    public GameOverState()
+    {
+        
+    }
     public void Enter()
     {
         

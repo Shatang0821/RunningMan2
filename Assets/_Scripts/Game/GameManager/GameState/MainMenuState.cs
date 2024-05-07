@@ -4,6 +4,11 @@ using UnityEngine.InputSystem;
 
 public class MainMenuState : IState
 {
+    public MainMenuState()
+    {
+        
+    }
+    
     public void Enter()
     {
         
