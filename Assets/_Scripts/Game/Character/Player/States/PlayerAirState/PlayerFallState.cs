@@ -27,6 +27,7 @@ public class PlayerFallState : PlayerAirState
         // 現在の状態がこの状態でなければ、さらなるロジックを実行しない
         if(!playerStateMachine.CheckCurrentState(this))
             return;
+
         if (player.IsGroundDetected())
         {
             playerStateMachine.ChangeState(PlayerStateEnum.Land);

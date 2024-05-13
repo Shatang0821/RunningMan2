@@ -1,4 +1,5 @@
 ﻿using FrameWork.FSM;
+using UnityEngine;
 
 public class GameplayState : IState
 {
@@ -13,7 +14,9 @@ public class GameplayState : IState
 
     public void Enter()
     {
-        _playerController.GamePlayerEnter();
+        _stageManager.GamePlayerEnter();
+        _playerController.GamePlayerEnter(_stageManager.GetCurrentMapData().PlayerSpawnPos);
+        CameraController.Instance.GamePlayerEnter(_playerController.GetPlayer());
     }
 
     public void Exit()

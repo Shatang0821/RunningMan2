@@ -21,7 +21,10 @@ public class MainMenuState : IState
 
     public void LogicUpdate()
     {
-        
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            GameManager.Instance.GamePlay();
+        }
     }
 
     public void PhysicsUpdate()

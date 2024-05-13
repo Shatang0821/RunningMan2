@@ -21,7 +21,7 @@ public class GameManager : PersistentUnitySingleton<GameManager>
     
     private void Start()
     {
-        GamePlay();
+        MainMenu();
     }
 
     private void Update()
@@ -35,7 +35,11 @@ public class GameManager : PersistentUnitySingleton<GameManager>
     }
 
     //状態遷移ロジック
-    private void GamePlay()
+    private void MainMenu()
+    {
+        stateMachine.ChangeState(GameStateEnum.MainMenu);
+    }
+    public void GamePlay()
     {
         stateMachine.ChangeState(GameStateEnum.GamePlay);
     }
@@ -45,8 +49,4 @@ public class GameManager : PersistentUnitySingleton<GameManager>
         stateMachine.ChangeState(GameStateEnum.GameOver);
     }
 
-    private void MainMenu()
-    {
-        stateMachine.ChangeState(GameStateEnum.MainMenu);
-    }
 }

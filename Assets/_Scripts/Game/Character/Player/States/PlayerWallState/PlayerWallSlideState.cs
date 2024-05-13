@@ -31,7 +31,7 @@
             return;
         }
 
-        if (player.XInput != player.XInput || player.XInput == 0)
+        if (player.XInput != player.XInput || player.XInput == 0 || !player.IsWallDetected())
         {
             playerStateMachine.ChangeState(PlayerStateEnum.Fall);
             return;

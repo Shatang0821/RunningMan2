@@ -15,10 +15,13 @@ public class PlayerController
     public PlayerController()
     {
         _player = ObjectFactory.Instance.CreateGameObject(PrefabPath);
+        _player.SetActive(false);
     }
     
-    public void GamePlayerEnter()
+    public void GamePlayerEnter(Vector3 position)
     {
+        DebugLogger.Log("Player Spawn");
+        _player.transform.position = position;
         _player.SetActive(true);
     }
     
@@ -26,7 +29,14 @@ public class PlayerController
     {
         _player.SetActive(false);
     }
-    
-    
-    
+
+    /// <summary>
+    /// プレイヤーのインスタンスを返す
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetPlayer()
+    {
+        return _player;
+    }
+
 }

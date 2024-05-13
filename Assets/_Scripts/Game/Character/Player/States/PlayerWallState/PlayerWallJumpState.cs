@@ -2,8 +2,8 @@
 
 public class PlayerWallJumpState : PlayerWallState
 {
-    private readonly float _totalJumpTime = 0.3f; // 上昇の持続フレーム数
-    private readonly Vector2 _jumpVelocity = new Vector2(4.8f, 10f);
+    private readonly float _totalJumpTime = 0.36f; // 上昇の持続フレーム数
+    private readonly Vector2 _jumpVelocity = new Vector2(5.5f, 10f);
 
     public PlayerWallJumpState(string animBoolName, Player player, PlayerStateMachine playerStateMachine) : base(
         animBoolName, player, playerStateMachine)
@@ -30,6 +30,12 @@ public class PlayerWallJumpState : PlayerWallState
         
         // ジャンプの持続時間が終了したら、落下状態に切り替える
         if (stateTimer < 0)
+        {
+            playerStateMachine.ChangeState(PlayerStateEnum.Fall);
+            return;
+        }
+
+        if (player.rb.velocity.y <= 0)
         {
             playerStateMachine.ChangeState(PlayerStateEnum.Fall);
             return;
