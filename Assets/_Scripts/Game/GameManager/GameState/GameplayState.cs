@@ -13,7 +13,6 @@ public class GameplayState : IState
 
     public void Enter()
     {
-        
         _playerController.GamePlayerEnter();
     }
 

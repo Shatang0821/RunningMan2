@@ -3,7 +3,7 @@
 public class PlayerDashState : PlayerBaseState
 {
     private float _dashDuration = 0.15f;  // ダッシュの持続時間
-    private float _dashSpeed = 20;     // ダッシュ時のスピード
+    private float _dashSpeed = 15;     // ダッシュ時のスピード
     private Vector2 _dashDir;     // ダッシュ方向
     
     private Vector2 _facDashDir => new Vector2(player.facingDir, 0); //向く方向にダッシュ

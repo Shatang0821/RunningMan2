@@ -128,4 +128,21 @@ public class Player : Entity
     }
 
     #endregion
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Hint"))
+        {
+            HintManager.Instance.EnableTmp(other.transform.gameObject,true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Hint"))
+        {
+            HintManager.Instance.EnableTmp(other.transform.gameObject,false);
+        }
+    }
 }

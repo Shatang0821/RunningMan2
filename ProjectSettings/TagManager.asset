@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CheckPoint
+  - Hint
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - UI
   - Player
   - CheckPoint
-  - 
+  - Hint
   - 
   - 
   - 
