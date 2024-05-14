@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e803726108493da5b6f533cd116e33, type: 3}
-  m_Name: StageData
+  m_Script: {fileID: 11500000, guid: 8b31dee3b68b4ae1ac15fdf371c2716a, type: 3}
+  m_Name: PoolData
   m_EditorClassIdentifier: 
-  Maps:
-  - {fileID: 11400000, guid: 65e9473cc9ab6a645bb9e6a0461ca580, type: 2}
-  - {fileID: 11400000, guid: a9893f36c7c4129418717010ef1e9f9c, type: 2}
+  allPools:
+  - categoryName: Spike
+    pools:
+    - prefab: {fileID: 4667867543950377464, guid: fd36757fae729554f93ef1e0f8d9bda7, type: 3}
+      size: 50

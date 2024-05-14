@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MapData_1
   m_EditorClassIdentifier: 
   AreaDatas:
-  - MapPrefab: {fileID: 0}
+  - MapPrefab: {fileID: 265353984021855288, guid: 8b54cd709ca9bef44a12b65dbb3bb672, type: 3}
     Pos: {x: 0, y: 0}
-    PlayerSpawnPos: {x: 0, y: 0}
+    PlayerSpawnPos: {x: -11, y: -3.4}
+  IsFollowPlayer: 0

@@ -4,7 +4,7 @@ using FrameWork.Utils;
 using Unity.Mathematics;
 using UnityEngine;
 
-public enum StageEnum
+public enum MapEnum
 {
     Tutorial,
     Map1,
@@ -18,8 +18,9 @@ public class StageManager
     
     private StageSO _stageSo;           //ステージデータ
     private AreaData _currentArea;      //現在エリアデータ
+    private int _currentMapIndex = 0;
     private int _currentAreaIndex = 0;  //現在エリアインデックス
-    private int _previousIndex = 0;             // 以前のステージインデックス
+    private int _previousAreaIndex = 0; // 以前のステージインデックス
     private int _maxAreaCount = 0;
 
     public StageManager()
@@ -37,7 +38,8 @@ public class StageManager
 
     public void GamePlayerEnter()
     {
-        GeneratorMap((int)StageEnum.Tutorial);
+        //テスト
+        GeneratorMap((int)MapEnum.Map1);
     }
     
     /// <summary>
@@ -47,17 +49,17 @@ public class StageManager
     {
         //マップデータをゲット
         var areaArray = _stageSo.Maps[stageIndex].AreaDatas;
+        _currentMapIndex = stageIndex;
+        
         //数値のリセット
         _currentAreaIndex = 0;
-        _previousIndex = _currentAreaIndex - 1;
+        _previousAreaIndex = _currentAreaIndex - 1;
         _maxAreaCount = areaArray.Length;
-        DebugLogger.Log(_maxAreaCount);
         //マップデータからマップを生成する
         foreach (var mapData in areaArray)
         {
             var map = GameObject.Instantiate(mapData.MapPrefab, mapData.Pos, Quaternion.identity,_mapParent.transform);
             DebugLogger.Log("MapDone");
-            //map.SetActive(false);
         }
 
         _currentArea = areaArray[_currentAreaIndex];
@@ -72,11 +74,10 @@ public class StageManager
     {
         return _currentArea;
     }
-    // public void InitCheckPoint()
-    // {
-    //     foreach (var mapData in _mapSo.MapDatas)
-    //     {
-    //         GameObject.Instantiate(_checkPointPrefab, mapData.Pos, Quaternion.identity);
-    //     }
-    // }
+    
+    /// <summary>
+    /// 現在のマップの仕様がプレイヤーにカメラをついていくか
+    /// </summary>
+    /// <returns></returns>
+    public bool IsFollowPlayer() => _stageSo.Maps[_currentMapIndex].IsFollowPlayer;
 }

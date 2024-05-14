@@ -8,6 +8,7 @@ public class MapSO : ScriptableObject
 {
     //生成マップデータ
     public AreaData[] AreaDatas;
+    public bool IsFollowPlayer;
 }
 
 [Serializable]

@@ -16,7 +16,7 @@ public class GameplayState : IState
     {
         _stageManager.GamePlayerEnter();
         _playerController.GamePlayerEnter(_stageManager.GetCurrentMapData().PlayerSpawnPos);
-        CameraController.Instance.GamePlayerEnter(_playerController.GetPlayer());
+        CameraController.Instance.GamePlayerEnter(_playerController.GetPlayer(),_stageManager.IsFollowPlayer());
     }
 
     public void Exit()

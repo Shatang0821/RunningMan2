@@ -90,6 +90,10 @@ public class PlayerClimbState : PlayerWallState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        //壁中に左右に動かないため
+        if(player.rb.velocity.x != 0)
+            player.SetVelocityX(0);
+        
         if(player.IsWallDetected() && _jumpDir == JumpDirection.TowardsWall)
             player.SetVelocityY(player.YInput * _climbSpeed);
         else

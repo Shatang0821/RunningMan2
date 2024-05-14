@@ -16,3 +16,4 @@ MonoBehaviour:
   - MapPrefab: {fileID: 428710978478454018, guid: e5d71a19a5748254186c9e8486bdab92, type: 3}
     Pos: {x: 0, y: 0}
     PlayerSpawnPos: {x: -11, y: -0.4}
+  IsFollowPlayer: 1

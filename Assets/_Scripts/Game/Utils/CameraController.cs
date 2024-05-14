@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraController : UnitySingleton<CameraController>
 {
     private CinemachineVirtualCamera _cinemachineVirtual;
-
+    
     protected override void Awake()
     {
         base.Awake();
@@ -18,8 +18,11 @@ public class CameraController : UnitySingleton<CameraController>
         }
     }
 
-    public void GamePlayerEnter(GameObject target)
+    public void GamePlayerEnter(GameObject target,bool isFollowTarget)
     {
-        _cinemachineVirtual.Follow = target.transform;
+        if (isFollowTarget)
+        {
+            _cinemachineVirtual.Follow = target.transform;
+        }
     }
 }
